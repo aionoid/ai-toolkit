@@ -91,16 +91,17 @@
             export PRISMA_SKIP_POSTINSTALL_GENERATE=1 # [cite: 7]
 
             # --- Shell and Venv  ---
+            echo "try to run venv"
             if [ -d ".venv" ]; then
               source .venv/bin/activate
             else
               echo "No venv found. Creating one..."
               uv venv
-              uv pip install --no-cache-dir torch==2.9.1 torchvision==0.24.1 torchaudio==2.9.1 --index-url https://download.pytorch.org/whl/cu128
+              uv pip install --no-cache-dir torch==2.9.1 torchvision==0.24.1 torchaudio==2.9.1 --index-url https://download.pytorch.org/whl/cu129
               uv pip install -r requirements.txt
             fi
 
-            exec zsh
+            # exec zsh # not work with direnv
           '';
         };
       in {
